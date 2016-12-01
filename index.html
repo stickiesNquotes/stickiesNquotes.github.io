@@ -1,0 +1,134 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+    <head>
+        <title>Home Page</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+		<!--header.css is for shared header elements for all pages and main.css is for elements specific to this page-->
+        <link rel="stylesheet" type="text/css" href="../static/css/header.css" media="screen"/>
+        <link rel="stylesheet" type="text/css" href="../static/css/main.css" media="screen"/>
+		<style>
+			.content{
+				position:absolute;
+				background: transparent url(../quotesLibrary/static/images/cork.png) top left;
+				top:60px;
+				left:0px;
+				right:0px;
+				padding:0px;
+				margin:0px;
+				height:100%;
+			}
+		</style>
+		<!--jQuery modules and javascript files-->
+		<!--some of these files could have been combined, but it made sense to separate some of the code into reusable groups-->
+		<script type="text/javascript" src="../static/javascript/jquery-1.3.2.js"></script>
+		<script type="text/javascript" src="../static/javascript/ui.core.js"></script>
+		<script type="text/javascript" src="../static/javascript/ui.draggable.js"></script>
+		<script type="text/javascript" src="../static/javascript/clock.js"></script>
+		<script type="text/javascript" src="../static/javascript/myLocalStore.js"></script>
+		<script type="text/javascript" src="../static/javascript/cookie.js"></script>
+
+		<!--Inline javascript and jQuery-->
+		<script type="text/javascript">
+			<!--onload function to set username,background, and clock for each page and for functions needed at start -->
+			window.onload=function(){
+				<!--username carries across the interactive pages, but is only settable from this page-->
+				var userName;
+				if(checkCookie("UserName")){
+					userName=getCookie("UserName");
+				} else {
+    				userName = "Guest";
+    			}
+				document.getElementById("txtusername").textContent = userName + "\'s Board";
+
+				<!--background can be set on any page and carries over to all other pages except snake, background is stored as a cookie-->
+				var bkgrnd = getCookie("bkgrnd");
+				if(bkgrnd != ""){
+					document.getElementById("content").style.backgroundImage = bkgrnd;
+				}
+				<!--clock in top right of header-->
+				GetClock();
+				setInterval(GetClock,1000);
+			}
+
+		$(function() {
+			<!--Allow the user to set thier name using an old style prompt - then store it as a cookie to pass between pages-->
+			$("#txtusername").click(function(){
+				var aName = prompt("Please enter your name", "Guest");
+				if(aName === ""){ aName = "Guest";}
+				document.getElementById("txtusername").textContent = aName + "\'s Board";
+				setCookie("UserName", aName);
+			});
+			
+			<!--events for my div hotspot buttons in the header to set the background - changing the background updates the cookie-->
+			<!--these could all be in a common javascript file, but I kept them local so I could make little changes later-->
+			$("#bkgrnd-cork").click(function(){
+				document.getElementById("content").style.backgroundImage = "url(../static/images/cork.png)";
+				setCookie("bkgrnd", "url(../static/images/cork.png)");
+			});
+
+			$("#bkgrnd-bboard").click(function(){
+				document.getElementById("content").style.backgroundImage = "url(../static/images/chalkboard.png)";
+				setCookie("bkgrnd", "url(../static/images/chalkboard.png)");
+			});
+
+			$("#bkgrnd-wboard").click(function(){
+				document.getElementById("content").style.backgroundImage = "url(../static/images/wboard.png)";
+				setCookie("bkgrnd", "url(../static/images/wboard.png)");
+			});
+			$("#bkgrnd-paper").click(function(){
+				document.getElementById("content").style.backgroundImage = "url(../static/images/paper6.png)";
+				setCookie("bkgrnd", "url(../static/images/paper6.png)");
+			});
+		
+		});
+		</script>
+	</head>
+    <body>
+		<!--game button replaces the nav button and allow user to play a quick game (not impressive, but fun)-->
+		<button id="myButton" onclick="window.location.href='{% url  "snakey" %}'">Play a Game</button>
+		<div class="header"></div>
+		<div id="txtusername"></div>
+		<div id="clockDate"></div>
+		<div id="clockTime"></div>
+		<!--hotspots in the header above clock to change the background-->
+		<ul class="bkgrnd">
+			<li id="bkgrnd-cork" style="background-image:url(../static/images/cork.png)">&nbsp;&nbsp;</li>
+			<li id="bkgrnd-bboard" style="background-image:url(../static/images/chalkboard.png)">&nbsp;&nbsp;</li>
+			<li id="bkgrnd-wboard" style="background-color:#f5f3ee">&nbsp;&nbsp;</li>
+			<li id="bkgrnd-paper" style="background-image:url(../static/images/paper6.png)">&nbsp;&nbsp;</li>
+		</ul>
+		<!--panel allows user to select activity-->
+		<div class="content nav" id="navDIV">
+			<ul id="horizontalList">
+				<li>
+					<a href="{% url "myStickyNote" %}">
+						<div id="stickyDiv">&nbsp;&nbsp;
+							<h2>Sticky Note Board</h2><br />
+							<p>Allows you to create sticky note reminders that persist between sessions.  There are 4 colors to choose from!</p>
+						</div>
+					</a>
+				</li>
+				<li>
+					<a href="{% url  "quotes" %}">
+						<div>&nbsp;&nbsp;
+							<h2>Quotes</h2><br />
+							<p>This is a collection of quotes that I live by.</p>
+						</div>
+					</a>
+				</li>
+				<li>
+					<a href="{% url "designDocumentation" %}">
+						<div>&nbsp;&nbsp;
+							<h2>Project Documentation</h2><br />
+							<p>Information on how I created this project.  Includes abstract, design goals, concept, and testing.</p>
+						</div>
+					</a>
+				</li>
+			</ul>
+		</div>
+		
+
+		<div id="content" class="content"></div> 		
+
+    </body>
+</html>
