@@ -85,7 +85,7 @@
 	</head>
     <body>
 		<!--game button replaces the nav button and allow user to play a quick game (not impressive, but fun)-->
-		<button id="myButton" onclick="window.location.href='{% url  "snakey" %}'">Play a Game</button>
+		<button id="myButton" onclick="window.location.href='{% url 'snakey' %}'">Play a Game</button>
 		<div class="header"></div>
 		<div id="txtusername"></div>
 		<div id="clockDate"></div>
@@ -101,7 +101,7 @@
 		<div class="content nav" id="navDIV">
 			<ul id="horizontalList">
 				<li>
-					<a href="{% url myStickyNote %}">
+					<a href="{% url 'myStickyNote' %}">
 						<div id="stickyDiv">&nbsp;&nbsp;
 							<h2>Sticky Note Board</h2><br />
 							<p>Allows you to create sticky note reminders that persist between sessions.  There are 4 colors to choose from!</p>
@@ -109,7 +109,7 @@
 					</a>
 				</li>
 				<li>
-					<a href="{% url quotes %}">
+					<a href="{% url 'quotes' %}">
 						<div>&nbsp;&nbsp;
 							<h2>Quotes</h2><br />
 							<p>This is a collection of quotes that I live by.</p>
@@ -117,7 +117,7 @@
 					</a>
 				</li>
 				<li>
-					<a href="{% url designDocumentation %}">
+					<a href="{% url 'designDocumentation' %}">
 						<div>&nbsp;&nbsp;
 							<h2>Project Documentation</h2><br />
 							<p>Information on how I created this project.  Includes abstract, design goals, concept, and testing.</p>
