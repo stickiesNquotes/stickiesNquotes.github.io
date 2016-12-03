@@ -4,12 +4,12 @@
         <title>StickyNote</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 		<!--header.css is for shared header elements for all pages and stickynote.css is for elements specific to this page-->
-        <link rel="stylesheet" type="text/css" href="../static/css/header.css" media="screen"/>
-        <link rel="stylesheet" type="text/css" href="../static/css/stickynote.css" media="screen"/>
+        <link rel="stylesheet" type="text/css" href="../quotesLibrary/static/css/header.css" media="screen"/>
+        <link rel="stylesheet" type="text/css" href="../quotesLibrary/static/css/stickynote.css" media="screen"/>
 		<style>
 			.content{
 				position:absolute;
-				background: transparent url(../static/images/cork.png) top left;
+				background: transparent url(../quotesLibrary/static/images/cork.png) top left;
 				top:60px;
 				left:0px;
 				right:0px;
@@ -21,13 +21,13 @@
 		</style>
 		<!--jQuery modules and javascript files-->
 		<!--some of these files could have been combined, but it made sense to separate some of the code into reusable groups-->
-		<script type="text/javascript" src="../static/javascript/jquery-1.3.2.js"></script>
-		<script type="text/javascript" src="../static/javascript/stickynote.js"></script>
-		<script type="text/javascript" src="../static/javascript/ui.core.js"></script>
-		<script type="text/javascript" src="../static/javascript/ui.draggable.js"></script>
-		<script type="text/javascript" src="../static/javascript/clock.js"></script>
-		<script type="text/javascript" src="../static/javascript/myLocalStore.js"></script>
-		<script type="text/javascript" src="../static/javascript/cookie.js"></script>
+		<script type="text/javascript" src="../quotesLibrary/static/javascript/jquery-1.3.2.js"></script>
+		<script type="text/javascript" src="../quotesLibrary/static/javascript/stickynote.js"></script>
+		<script type="text/javascript" src="../quotesLibrary/static/javascript/ui.core.js"></script>
+		<script type="text/javascript" src="../quotesLibrary/static/javascript/ui.draggable.js"></script>
+		<script type="text/javascript" src="../quotesLibrary/static/javascript/clock.js"></script>
+		<script type="text/javascript" src="../quotesLibrary/static/javascript/myLocalStore.js"></script>
+		<script type="text/javascript" src="../quotesLibrary/static/javascript/cookie.js"></script>
 
 		<!--Inline javascript and jQuery-->
 		<script type="text/javascript">
@@ -82,22 +82,22 @@
 			});
 			<!--events for my div hotspot buttons in the header to set the background - changing the background updates the cookie-->
 			$("#bkgrnd-cork").click(function(){
-				document.getElementById("content").style.backgroundImage = "url(../static/images/cork.png)";
-				setCookie("bkgrnd", "url(../static/images/cork.png)");
+				document.getElementById("content").style.backgroundImage = "url(../quotesLibrary/static/images/cork.png)";
+				setCookie("bkgrnd", "url(../quotesLibrary/static/images/cork.png)");
 			});
 
 			$("#bkgrnd-bboard").click(function(){
-				document.getElementById("content").style.backgroundImage = "url(../static/images/chalkboard.png)";
-				setCookie("bkgrnd", "url(../static/images/chalkboard.png)");
+				document.getElementById("content").style.backgroundImage = "url(../quotesLibrary/static/images/chalkboard.png)";
+				setCookie("bkgrnd", "url(../quotesLibrary/static/images/chalkboard.png)");
 			});
 
 			$("#bkgrnd-wboard").click(function(){
-				document.getElementById("content").style.backgroundImage = "url(../static/images/wboard.png)";
-				setCookie("bkgrnd", "url(../static/images/wboard.png)");
+				document.getElementById("content").style.backgroundImage = "url(../quotesLibrary/static/images/wboard.png)";
+				setCookie("bkgrnd", "url(../quotesLibrary/static/images/wboard.png)");
 			});
 			$("#bkgrnd-paper").click(function(){
-				document.getElementById("content").style.backgroundImage = "url(../static/images/paper6.png)";
-				setCookie("bkgrnd", "url(../static/images/paper6.png)");
+				document.getElementById("content").style.backgroundImage = "url(../quotesLibrary/static/images/paper6.png)";
+				setCookie("bkgrnd", "url(../quotesLibrary/static/images/paper6.png)");
 			});
 		
 		});
@@ -106,17 +106,17 @@
 	<!--save any note we have on the page to LocalStorage when we exit page-->
     <body onunload="saveNotes()">
 	<!--button in the left of the header to navigate back to main page-->
-		<button id="myButton" onclick="window.location.href='{% url "index" %}'">&lt;&lt; Go Home</button>
+		<button id="myButton" onclick="window.location.href='../index.html'">&lt;&lt; Go Home</button>
 		<div class="header"></div>
 		<div id="txtusername"></div>
 		<div id="clockDate"></div>
 		<div id="clockTime"></div>
 		<!--hotspots in the header above clock to change the background-->
 		<ul class="bkgrnd">
-			<li id="bkgrnd-cork" style="background-image:url(../static/images/cork.png)">&nbsp;&nbsp;</li>
-			<li id="bkgrnd-bboard" style="background-image:url(../static/images/chalkboard.png)">&nbsp;&nbsp;</li>
+			<li id="bkgrnd-cork" style="background-image:url(../quotesLibrary/static/images/cork.png)">&nbsp;&nbsp;</li>
+			<li id="bkgrnd-bboard" style="background-image:url(../quotesLibrary/static/images/chalkboard.png)">&nbsp;&nbsp;</li>
 			<li id="bkgrnd-wboard" style="background-color:#f5f3ee">&nbsp;&nbsp;</li>
-			<li id="bkgrnd-paper" style="background-image:url(../static/images/paper6.png)">&nbsp;&nbsp;</li>
+			<li id="bkgrnd-paper" style="background-image:url(../quotesLibrary/static/images/paper6.png)">&nbsp;&nbsp;</li>
 		</ul>
 		<!--hotspots in the upper left of content area to generate a note of chosen color-->
 		<ul class="postits">
